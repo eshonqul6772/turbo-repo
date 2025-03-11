@@ -1,6 +1,6 @@
 const MainPage = ()=>{
   return (
-      <div>DOCS</div>
+      <div>DOCS test</div>
   )
 }
 
