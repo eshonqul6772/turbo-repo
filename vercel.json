@@ -2,29 +2,29 @@
   "builds": [
     {
       "src": "apps/web/package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": { "branch": "front" }
     },
     {
-      "src": "apps/docs/package.json",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "apps/backend/package.json",
-      "use": "@vercel/node"
+      "src": "apps/admin/package.json",
+      "use": "@vercel/next",
+      "config": { "branch": "admin" }
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/apps/backend/dist/main.js"
-    },
-    {
-      "src": "/docs/(.*)",
-      "dest": "/apps/docs/.next/serverless/pages/docs/$1"
+      "src": "/favicon.ico",
+      "dest": "/apps/web/public/favicon.ico"
     },
     {
       "src": "/(.*)",
-      "dest": "/apps/web/.next/serverless/pages/$1"
+      "dest": "/apps/web/.next/serverless/pages/$1",
+      "conditions": { "branch": "front" }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/apps/admin/.next/serverless/pages/$1",
+      "conditions": { "branch": "admin" }
     }
   ]
 }
